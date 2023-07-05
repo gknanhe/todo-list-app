@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/0dc53eee16.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+    <div class="background-container">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="main-container">
+            <div class="container">
+                <div class="header">
+                    <h1>Go Task</h1>
+
+                </div>
+                <div class="content-container">
+                    <div class="aside-section">
+                        <div class="menus">
+                            <p>Tasks</p>
+                            <!-- <p>Today</p>
+                            <p>Upcomming</p> -->
+                        </div>
+
+                    </div>
+                    <div class="content-section">
+                        <form action="/taskForm" method="post">
+                            <div class="addTask">
+                                <!-- <p>&#43;</p> -->
+                                <textarea name="task" id="task" cols="70" rows="1" required
+                                    placeholder=" + Add New Task"></textarea>
+                                <!-- <textarea type="text" name="task" placeholder="Add New Task"> -->
+                            </div>
+                            <p id="category">Select Category :</p>
+                            <div class="task-category">
+                                <div class="category-list">
+                                    <input type="radio" name="category" id="category" value="Personal">
+                                    <label id="Per" for="category">Personal</label>
+                                </div>
+                                <div class="category-list">
+                                    <input type="radio" name="category" id="category" value="Family">
+                                    <label id="Fam" for="category">Family</label>
+                                </div>
+                                <div class="category-list">
+                                    <input type="radio" name="category" id="category" value="Work">
+                                    <label id="Wor" for="category">Work</label>
+                                </div>
+                                <div class="category-list">
+                                    <input type="radio" name="category" id="category" value="Study">
+                                    <label id="Stu" for="category">Study</label>
+                                </div>
+                                <div class="category-list">
+                                    <input type="radio" name="category" id="category" value="Entertainment">
+                                    <label id="Ent" for="category">Entertainment</label>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>Add Date: </p>
+                                <input type="date"  name="date" id="date">
+                            </div>
+                            <div class="btn">
+                                <button type="submit"> Add Task</button>
+                            </div>
+                        </form>
+
+
+
+                        <% let id=0 %>
+                            <% if(todo_list.length===0) {%>
+                                <h1 style="text-align: center; margin-top: 50px;">No Task Added Yet</h1>
+
+                                <% } %>
+                                    <div class="tasks-list-container">
+                                        <% for ( let i of todo_list) { %>
+                                            <div class="task-list">
+                                                <div class="checkBox-container">
+                                                    <!-- <a href="/checked-task/?id=<%= i.id %> "> -->
+                                                    <input type="checkbox" class="cBox" name="checkbox"
+                                                        data-id="<%= ++id %>" data-dbid="<%= i.id %>"
+                                                        <%=i.checked=="checked" ? "checked" : "" %> />
+
+                                                    <!-- </a> -->
+                                                </div>
+                                                <div class="category-title" value="<%= i.category %>">
+                                                    <%= i.category %>
+                                                </div>
+                                                <div class="task" data-taskid="<%= id %>">
+                                                    <div class="task-date">
+                                                        <div class="task-discription">
+                                                            <p>
+
+                                                                <%= i.task %>
+
+                                                            </p>
+                                                            <!-- <i class="fa  fa-trash "></i> -->
+                                                        </div>
+                                                        <div class="date-container">
+                                                            <i class="fa-regular fa-calendar"></i>
+                                                            <%= i.date %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="delete-btn">
+                                                        <a href="/delete-task/?id=<%= i.id %> ">
+                                                            <i class="fa  fa-trash "></i>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <%}%>
+
+                                    </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="./js/home.js"></script>
+</body>
+
+</html>
